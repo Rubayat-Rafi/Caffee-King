@@ -5,11 +5,15 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        banner: "url(./src/assets/banner.jpg)"
+      }
+    },
   },
   plugins: [
     // eslint-disable-next-line no-undef
     require('daisyui'),
   ],
 }
-
+import banner from './src/assets/banner.jpg'
