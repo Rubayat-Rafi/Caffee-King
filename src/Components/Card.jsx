@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
-import { Link } from "react-router-dom";
+import { FaTrashAlt } from 'react-icons/fa';
+import { Link, useLocation } from "react-router-dom";
 
-const Card = ({coffee}) => {
+const Card = ({coffee, handleRemove}) => {
+  const {pathname}= useLocation();
 
     const { name, image, category, origin, type, id, rating, popularity } =
     coffee || {}
@@ -9,7 +11,7 @@ const Card = ({coffee}) => {
     return (
         <div className='flex relative mt-8'>
       <Link
-        to={`/coffee/${id}`}
+        to={`/coffeedetails/${id}`}
         className='transition  hover:scale-105 shadow-xl rounded-xl overflow-hidden'
       >
         <figure className='w-full h-48 overflow-hidden'>
@@ -24,7 +26,14 @@ const Card = ({coffee}) => {
           <p>Popular: {popularity}</p>
         </div>
       </Link>
-
+      {pathname === '/dashboard' && (
+        <div
+          onClick={() => handleRemove(id)}
+          className='absolute p-3 rounded-full cursor-pointer bg-warning -top-5 -right-5'
+        >
+          <FaTrashAlt size={20} />
+        </div>
+      )}
     </div>
     );
 };
@@ -32,6 +41,7 @@ const Card = ({coffee}) => {
 
 Card.propTypes = {
     coffee: PropTypes.object,
+    handleRemove: PropTypes.func,
 
   }
 

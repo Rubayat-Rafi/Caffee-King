@@ -5,6 +5,7 @@ import Dashboard from "../Pages/Dashboard";
 import Home from '../Pages/Home'
 import Error from "../Components/Error";
 import Category from "../Pages/Category";
+import CoffeeDetails from "../Pages/CoffeeDetails";
 
 
 const router = createBrowserRouter([
@@ -32,11 +33,17 @@ const router = createBrowserRouter([
         },
         {
           path:'/coffees',
-          element:<Coffees></Coffees>
+          element:<Coffees></Coffees>,
+          loader: () => fetch('../../public/coffees.json'),
         },
         {
           path:'/dashboard',
           element:<Dashboard></Dashboard>
+        },
+        {
+          path:'/coffeedetails/:id',
+          loader: () => fetch('../../public/coffees.json'),
+          element:<CoffeeDetails></CoffeeDetails>
         },
       ],
     },
